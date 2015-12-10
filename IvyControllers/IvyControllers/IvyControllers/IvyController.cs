@@ -8,7 +8,7 @@ using IvyBus;
 
 namespace IvyControllers
 {
-    public abstract class AbstractIvyController
+    public class IvyController
     {
         #region Constants
         
@@ -52,7 +52,7 @@ namespace IvyControllers
         /// <param name="messageFilter"></param>
         /// <param name="broadcastAddress"></param>
         /// <param name="broadcastPort"></param>
-        public AbstractIvyController(string name, string readyMessage, string messageFilter, string broadcastAddress, string broadcastPort)
+        public IvyController(string name, string readyMessage, string messageFilter, string broadcastAddress, string broadcastPort)
         {
             IvyBus = new Ivy(name, readyMessage);
             IvyBus.BindMsg(messageFilter, MessageReceivedCallback);
@@ -65,7 +65,7 @@ namespace IvyControllers
         /// <param name="name"></param>
         /// <param name="readyMessage"></param>
         /// <param name="messageFilter"></param>
-        public AbstractIvyController(string name, string readyMessage, string messageFilter)
+        public IvyController(string name, string readyMessage, string messageFilter)
             : this(name, readyMessage, messageFilter, DEFAULT_BUS_BROADCAST_ADDRESS, DEFAULT_BUS_BROADCAST_PORT)
         { }
 
@@ -73,7 +73,7 @@ namespace IvyControllers
         /// Instanciates an IvyController using default ready message, message filter, broadcast address and port.
         /// </summary>
         /// <param name="name"></param>
-        public AbstractIvyController(string name)
+        public IvyController(string name)
             : this(name, DEFAULT_BUS_READY_MESSAGE, DEFAULT_BUS_MESSAGE_FILTER, DEFAULT_BUS_BROADCAST_ADDRESS, DEFAULT_BUS_BROADCAST_PORT)
         { }
         #endregion
