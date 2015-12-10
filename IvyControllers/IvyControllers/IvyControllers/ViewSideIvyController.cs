@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace IvyControllers
 {
-    class ViewSideIvyController
+    public class ViewSideIvyController : AbstractIvyController
     {
+        #region Methods
+        internal override void MessageReceivedCallback(object sender, IvyBus.IvyMessageEventArgs e)
+        {
+            base.MessageReceivedCallback(sender, e);
+        }
+        #endregion
     }
 }
