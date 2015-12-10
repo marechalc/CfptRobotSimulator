@@ -1,8 +1,25 @@
 ﻿<Window x:Class="MapEditor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="502" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="#FFF4F4F5" Height="126" Margin="10,29,17,0" Stroke="Black" VerticalAlignment="Top"/>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+        <Canvas Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.Column="2"/>
+        <Button Content="Circle" Margin="43,62,0,0" HorizontalAlignment="Left" Width="74" Height="20" VerticalAlignment="Top"/>
+        <Button Content="Rectangle" Margin="43,87,0,0" HorizontalAlignment="Left" Width="74" Height="20" VerticalAlignment="Top"/>
+        <Button Content="Square" Margin="43,112,0,0" HorizontalAlignment="Left" Width="74" Height="20" VerticalAlignment="Top"/>
+        <Button Content="Triangle" Margin="138,62,0,0" HorizontalAlignment="Left" Width="74" Height="20" VerticalAlignment="Top"/>
+        <Button Content="Line" Margin="138,87,0,0" HorizontalAlignment="Left" Width="74" Height="20" VerticalAlignment="Top"/>
+        <Label Content="Shapes" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FFF4F4F5" Height="126" Margin="10,172,17,0" Stroke="Black" VerticalAlignment="Top"/>
+        <Label Content="Colors" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FFF4F4F5" Height="126" Margin="10,315,17,0" Stroke="Black" VerticalAlignment="Top"/>
+        <Label Content="Properties" HorizontalAlignment="Left" Margin="10,316,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
