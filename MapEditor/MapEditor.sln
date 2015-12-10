@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapEditor", "MapEditor\MapEditor.csproj", "{8339F241-79D6-434E-9690-5CE8DBB500E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapEditor", "MapEditor\MapEditor.csproj", "{99882DD9-D9C4-46FB-94DB-A546988C8E87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8339F241-79D6-434E-9690-5CE8DBB500E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8339F241-79D6-434E-9690-5CE8DBB500E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8339F241-79D6-434E-9690-5CE8DBB500E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8339F241-79D6-434E-9690-5CE8DBB500E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99882DD9-D9C4-46FB-94DB-A546988C8E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99882DD9-D9C4-46FB-94DB-A546988C8E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99882DD9-D9C4-46FB-94DB-A546988C8E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99882DD9-D9C4-46FB-94DB-A546988C8E87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
