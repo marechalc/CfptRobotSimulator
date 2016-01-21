@@ -1,0 +1,9 @@
+C:\Users\BERGERATG_INFO\Dropbox\Ecole\Tech2\POO_S2\IvyBusRecepteur\IvyBusRecepteur\bin\Debug\IvyTools.exe.config
+C:\Users\BERGERATG_INFO\Dropbox\Ecole\Tech2\POO_S2\IvyBusRecepteur\IvyBusRecepteur\obj\Debug\IvyTools.exe
+C:\Users\BERGERATG_INFO\Dropbox\Ecole\Tech2\POO_S2\IvyBusRecepteur\IvyBusRecepteur\obj\Debug\IvyTools.pdb
+C:\Users\BERGERATG_INFO\Dropbox\Ecole\Tech2\POO_S2\IvyBusRecepteur\IvyBusRecepteur\bin\Debug\IvyTools.exe
+C:\Users\BERGERATG_INFO\Dropbox\Ecole\Tech2\POO_S2\IvyBusRecepteur\IvyBusRecepteur\bin\Debug\IvyTools.pdb
+C:\Users\BERGERATG_INFO\Dropbox\Ecole\Tech2\POO_S2\IvyBusRecepteur\IvyBusRecepteur\obj\Debug\IvyBusRecepteur.csprojResolveAssemblyReference.cache
+C:\Users\BERGERATG_INFO\Dropbox\Ecole\Tech2\POO_S2\IvyBusRecepteur\IvyBusRecepteur\obj\Debug\IvyTools.Form1.resources
+C:\Users\BERGERATG_INFO\Dropbox\Ecole\Tech2\POO_S2\IvyBusRecepteur\IvyBusRecepteur\obj\Debug\IvyTools.Properties.Resources.resources
+C:\Users\BERGERATG_INFO\Dropbox\Ecole\Tech2\POO_S2\IvyBusRecepteur\IvyBusRecepteur\obj\Debug\IvyBusRecepteur.csproj.GenerateResource.Cache
