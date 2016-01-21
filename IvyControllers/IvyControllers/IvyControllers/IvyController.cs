@@ -24,11 +24,6 @@ namespace IvyControllers
         public const string DEFAULT_BUS_BROADCAST_PORT = "2010";
 
         /// <summary>
-        /// Default message filter for the Ivy Bus used by constructors that do not define it.
-        /// </summary>
-        public const string DEFAULT_BUS_MESSAGE_FILTER = "";
-
-        /// <summary>
         /// Default ready message for the Ivy Bus used by constructors that do not define it.
         /// </summary>
         public const string DEFAULT_BUS_READY_MESSAGE = "READY";
@@ -66,13 +61,13 @@ namespace IvyControllers
         /// <param name="messageFilter"></param>
         /// <param name="broadcastAddress"></param>
         /// <param name="broadcastPort"></param>
-        public IvyController(string name, string readyMessage, string messageFilter, string broadcastAddress, string broadcastPort)
+        public IvyController(string name, string readyMessage, string broadcastAddress, string broadcastPort)
         {
             IvyBus = new Ivy(name, readyMessage);
             IvyBus.Start(String.Format("{0}:{1}", broadcastAddress, broadcastPort));
 
             IvyBus.BindMsg(POSITION_CHANGED_REGEX, OnPositionChangedReceived);
-            IvyBus.BindMsg(ORIENTATION_CHANGED_REGEX, OnRotationChangedReceived);
+            IvyBus.BindMsg(ORIENTATION_CHANGED_REGEX, OnOrientationChangedReceived);
         }
 
         /// <summary>
@@ -81,8 +76,8 @@ namespace IvyControllers
         /// <param name="name"></param>
         /// <param name="readyMessage"></param>
         /// <param name="messageFilter"></param>
-        public IvyController(string name, string readyMessage, string messageFilter)
-            : this(name, readyMessage, messageFilter, DEFAULT_BUS_BROADCAST_ADDRESS, DEFAULT_BUS_BROADCAST_PORT)
+        public IvyController(string name, string readyMessage)
+            : this(name, readyMessage, DEFAULT_BUS_BROADCAST_ADDRESS, DEFAULT_BUS_BROADCAST_PORT)
         { }
 
         /// <summary>
@@ -90,7 +85,7 @@ namespace IvyControllers
         /// </summary>
         /// <param name="name"></param>
         public IvyController(string name)
-            : this(name, DEFAULT_BUS_READY_MESSAGE, DEFAULT_BUS_MESSAGE_FILTER, DEFAULT_BUS_BROADCAST_ADDRESS, DEFAULT_BUS_BROADCAST_PORT)
+            : this(name, DEFAULT_BUS_READY_MESSAGE, DEFAULT_BUS_BROADCAST_ADDRESS, DEFAULT_BUS_BROADCAST_PORT)
         { }
         #endregion
 
@@ -101,11 +96,11 @@ namespace IvyControllers
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnRotationChangedReceived(object sender, IvyMessageEventArgs e)
+        private void OnPositionChangedReceived(object sender, IvyMessageEventArgs e)
         {
             Regex regex = new Regex(POSITION_CHANGED_REGEX);
 
-            Match result = regex.Match(e.Argument);
+            Match result = regex.Match(e.GetArguments()[0]);
 
             if (result.Captures.Count == 3)
             {
@@ -122,11 +117,11 @@ namespace IvyControllers
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnPositionChangedReceived(object sender, IvyMessageEventArgs e)
+        private void OnOrientationChangedReceived(object sender, IvyMessageEventArgs e)
         {
             Regex regex = new Regex(ORIENTATION_CHANGED_REGEX);
 
-            Match result = regex.Match(e.Argument);
+            Match result = regex.Match(e.GetArguments()[0]);
 
             if (result.Captures.Count == 2)
             {
