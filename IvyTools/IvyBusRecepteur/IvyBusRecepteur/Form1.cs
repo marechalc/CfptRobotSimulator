@@ -13,13 +13,15 @@ namespace IvyTools
     public partial class Form1 : Form
     {
         private Ivy bus;
+
         public Form1()
         {
             InitializeComponent();
         }
 
+
         /// <summary>
-        /// Affiche les données reçues dans un listbox
+        /// Displays data received in a listbox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -27,12 +29,12 @@ namespace IvyTools
         {
             foreach (var message in e.GetArguments())
             {
-                lbxDonnees.Items.Add(message + " ");
+                lbxData.Items.Add(message);
             }
         }
 
         /// <summary>
-        /// Permet de changer d'abonnement à un messgae
+        /// Allows you to change subscription to a message
         /// </summary>
         private void changementMesage()
         {
@@ -46,33 +48,44 @@ namespace IvyTools
             }
             catch (IvyException ie)
             {
-                MessageBox.Show("Erreur " + ie.GetBaseException());
+                MessageBox.Show("Error " + ie.GetBaseException());
             }
 
-
         }
+
+        /// <summary>
+        /// Connect to the IvyBus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConenxion_Click(object sender, System.EventArgs e)
         {
-            bus = new Ivy("mon_appli", "mon_appli Ready");
+            bus = new Ivy("my_apply", "my_apply Ready");
 
             try
             {
                 bus.Start(tbxAdresse.Text);
-                MessageBox.Show("Vous êtes connecté");
-
-                // On récupère tous les messages qui circulent sur le bus et on les stocke dans un listbox
-                //bus.BindMsg("^(Y =.*|X = .*)", addMessage);
+                MessageBox.Show("You are connected");
             }
             catch (IvyException ie)
             {
-                MessageBox.Show("Erreur " + ie.GetBaseException());
+                MessageBox.Show("Error " + ie.GetBaseException());
             }
+            btnLogin.Enabled = false;
+            btnLogout.Enabled = true;
         }
 
+        /// <summary>
+        /// Disconnect to the IvyBus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDeconnexion_Click(object sender, EventArgs e)
         {
+            btnLogin.Enabled = true;
+            btnLogout.Enabled = false;
             bus.Stop();
-            MessageBox.Show("Vous êtes déconnecté");
+            MessageBox.Show("You are disconnected");
         }
 
         private void cbxChoixRegle_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,15 +99,6 @@ namespace IvyTools
                     break;
                 case 1:
                     bus.BindMsg("^(OrientationChanged.*)", addMessage);
-                    break;
-                case 2:
-                    bus.BindMsg("^(X = .*)", addMessage);
-                    break;
-                case 3:
-                    bus.BindMsg("^(Y =.*)", addMessage);
-                    break;
-                case 4:
-                    bus.BindMsg("^(Y =.*|X = .*)", addMessage);
                     break;
                 default:
                     break;
