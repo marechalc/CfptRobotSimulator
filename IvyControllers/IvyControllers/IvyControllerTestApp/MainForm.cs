@@ -32,7 +32,7 @@ namespace IvyControllerTestApp
 
         private void btnSendOrientation_Click(object sender, EventArgs e)
         {
-            Controller.SendOrientationChanged(txtOrientationName.Text, (double)numAngle.Value);
+            Controller.SendOrientationChanged(txtOrientationName.Text, (int)numAngle.Value);
         }
 
         void Controller_PositionChanged(string robotName, int x, int y)
@@ -42,7 +42,7 @@ namespace IvyControllerTestApp
                 robotName, x, y));
         }
 
-        void Controller_OrientationChanged(string robotName, double orientation)
+        void Controller_OrientationChanged(string robotName, int orientation)
         {
             lbxReceived.Items.Add(
                 String.Format("Orientation changed for robot {0}. New angle is ({1}).",

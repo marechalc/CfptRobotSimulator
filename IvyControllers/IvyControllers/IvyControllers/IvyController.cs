@@ -28,10 +28,15 @@ namespace IvyControllers
         /// </summary>
         public const string DEFAULT_BUS_READY_MESSAGE = "READY";
         
-
-
+        /// <summary>
+        /// Regex pattern used for PositionChanged messages
+        /// </summary>
         public const string POSITION_CHANGED_REGEX = @"^PositionChanged ([A-Za-z]+) ([0-9]+) ([0-9]+)";
-        public const string ORIENTATION_CHANGED_REGEX = @"^RotationChanged ([A-Za-z]+) ([0-9]+\.?\[0-9]*)";
+
+        /// <summary>
+        /// Regex pattern used for OrientationChanged messages
+        /// </summary>
+        public const string ORIENTATION_CHANGED_REGEX = @"^RotationChanged ([A-Za-z]+) ([0-9]+)";
         #endregion
 
         #region Private properties
@@ -46,7 +51,7 @@ namespace IvyControllers
 
         #region Events
         public delegate void PositionChangedEventHandler(string robotName, int x, int y);
-        public delegate void OrientationChangedEventHandler(string robotName, double orientation);
+        public delegate void OrientationChangedEventHandler(string robotName, int angle);
         
         public event PositionChangedEventHandler PositionChanged;
         public event OrientationChangedEventHandler OrientationChanged;
@@ -126,7 +131,7 @@ namespace IvyControllers
             if (result.Captures.Count == 2)
             {
                 string robotName = result.Captures[0].Value;
-                double angle = Convert.ToDouble(result.Captures[1].Value);
+                int angle = Convert.ToInt32(result.Captures[1].Value);
 
                 OrientationChanged(robotName, angle);
             }
@@ -141,7 +146,7 @@ namespace IvyControllers
                 robotName, x, y));
         }
 
-        public void SendOrientationChanged(string robotName, double angle)
+        public void SendOrientationChanged(string robotName, int angle)
         {
             IvyBus.SendMsg(String.Format("OrientationChanged {0} {1}",
                 robotName, angle));
