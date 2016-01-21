@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace SimulatorEngine
 {
@@ -22,7 +24,11 @@ namespace SimulatorEngine
         public string Instruction
         {
             get { return _instruction; }
-            set { _instruction = value; }
+            set
+            {
+                _instruction = value;
+                ApplyInstruction();
+            }
         }
 
         public Point Position
@@ -64,8 +70,45 @@ namespace SimulatorEngine
             this.Instruction = instruction;
         }
 
+        /// <summary>
+        /// This apply an instruction
+        /// </summary>
+        private void ApplyInstruction()
+        {
+            string instructionName = Regex.Split(this.Instruction, @"\[a-zA-Z]+")[0];
+            int instructionParam = Convert.ToInt32(Regex.Split(this.Instruction, @"\-?[0-9]\d*(\.\d+)?")[0]);
+
+            switch (instructionName)
+            {
+                case "RS":
+                    this.Position = new Point(200, 800);
+                    this.Orientation = 0;
+                    break;
+
+                case "VI":
+                    this.Speed = instructionParam;
+                    break;
+
+                case "AV":
+
+                    break;
+
+
+                case "GC":
+                    this.Orientation = instructionParam;
+                    break;
+
+            }
+
+
+
+        }
+
         public void update()
         {
+
+
+
 
         }
     }

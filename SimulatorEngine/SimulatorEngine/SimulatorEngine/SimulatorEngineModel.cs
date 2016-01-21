@@ -47,7 +47,7 @@ namespace SimulatorEngine
         void Update(object sender, ElapsedEventArgs e)
         {
            
-
+            
         }
 
         public void StrategyParser()
