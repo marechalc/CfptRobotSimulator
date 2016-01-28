@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace SimulatorEngine
 {
-    class RobotModel
+    public class RobotModel
     {
         private const int DEFAULT_SPEED = 0;
 
