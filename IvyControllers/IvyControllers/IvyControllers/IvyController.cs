@@ -69,6 +69,11 @@ namespace IvyControllers
 
             IvyBus.BindMsg(POSITION_CHANGED_REGEX, OnPositionChangedReceived);
             IvyBus.BindMsg(ORIENTATION_CHANGED_REGEX, OnOrientationChangedReceived);
+
+            if (!IvyBus.IsRunning)
+            {
+                throw new Exception("Ivy bus has not been connected.");
+            }
         }
 
         /// <summary>

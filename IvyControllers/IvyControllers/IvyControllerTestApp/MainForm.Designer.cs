@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbSend = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSendOrientation = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,27 +43,33 @@
             this.label1 = new System.Windows.Forms.Label();
             this.numPosY = new System.Windows.Forms.NumericUpDown();
             this.numPosX = new System.Windows.Forms.NumericUpDown();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbReceived = new System.Windows.Forms.GroupBox();
             this.lbxReceived = new System.Windows.Forms.ListBox();
-            this.groupBox1.SuspendLayout();
+            this.btnConnect = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbxAddress = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbxPort = new System.Windows.Forms.TextBox();
+            this.gbSend.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAngle)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPosY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPosX)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.gbReceived.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gbSend
             // 
-            this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(260, 272);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Send";
+            this.gbSend.Controls.Add(this.groupBox4);
+            this.gbSend.Controls.Add(this.groupBox3);
+            this.gbSend.Enabled = false;
+            this.gbSend.Location = new System.Drawing.Point(12, 37);
+            this.gbSend.Name = "gbSend";
+            this.gbSend.Size = new System.Drawing.Size(260, 272);
+            this.gbSend.TabIndex = 0;
+            this.gbSend.TabStop = false;
+            this.gbSend.Text = "Send";
             // 
             // groupBox4
             // 
@@ -195,15 +201,16 @@
             this.numPosX.Size = new System.Drawing.Size(193, 20);
             this.numPosX.TabIndex = 0;
             // 
-            // groupBox2
+            // gbReceived
             // 
-            this.groupBox2.Controls.Add(this.lbxReceived);
-            this.groupBox2.Location = new System.Drawing.Point(280, 13);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(271, 272);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Received";
+            this.gbReceived.Controls.Add(this.lbxReceived);
+            this.gbReceived.Enabled = false;
+            this.gbReceived.Location = new System.Drawing.Point(279, 37);
+            this.gbReceived.Name = "gbReceived";
+            this.gbReceived.Size = new System.Drawing.Size(271, 272);
+            this.gbReceived.TabIndex = 1;
+            this.gbReceived.TabStop = false;
+            this.gbReceived.Text = "Received";
             // 
             // lbxReceived
             // 
@@ -213,19 +220,68 @@
             this.lbxReceived.Size = new System.Drawing.Size(257, 238);
             this.lbxReceived.TabIndex = 2;
             // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(475, 7);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(75, 23);
+            this.btnConnect.TabIndex = 2;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(95, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Broadcast address";
+            // 
+            // tbxAddress
+            // 
+            this.tbxAddress.Location = new System.Drawing.Point(114, 9);
+            this.tbxAddress.Name = "tbxAddress";
+            this.tbxAddress.Size = new System.Drawing.Size(217, 20);
+            this.tbxAddress.TabIndex = 4;
+            this.tbxAddress.Text = "255.255.255.255";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(337, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 13);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Port";
+            // 
+            // tbxPort
+            // 
+            this.tbxPort.Location = new System.Drawing.Point(369, 9);
+            this.tbxPort.Name = "tbxPort";
+            this.tbxPort.Size = new System.Drawing.Size(100, 20);
+            this.tbxPort.TabIndex = 6;
+            this.tbxPort.Text = "2010";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 288);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(561, 321);
+            this.Controls.Add(this.tbxPort);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.tbxAddress);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnConnect);
+            this.Controls.Add(this.gbReceived);
+            this.Controls.Add(this.gbSend);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Ivy Controller test app";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
-            this.groupBox1.ResumeLayout(false);
+            this.gbSend.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAngle)).EndInit();
@@ -233,14 +289,15 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPosY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPosX)).EndInit();
-            this.groupBox2.ResumeLayout(false);
+            this.gbReceived.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbSend;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnSendOrientation;
         private System.Windows.Forms.Label label4;
@@ -255,8 +312,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numPosY;
         private System.Windows.Forms.NumericUpDown numPosX;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbReceived;
         private System.Windows.Forms.ListBox lbxReceived;
+        private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbxAddress;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbxPort;
     }
 }
 

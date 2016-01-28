@@ -13,16 +13,42 @@ namespace IvyControllerTestApp
 {
     public partial class MainForm : Form
     {
-        IvyController Controller { get; set; }
+        private bool _connected;
+
+        private IvyController Controller { get; set; }
+        private bool Connected
+        {
+            get
+            {
+                return _connected;
+            }
+            set
+            {
+                if (value)
+                {
+                    btnConnect.Text = "Disconnect";
+                    gbSend.Enabled = true;
+                    gbReceived.Enabled = true;
+                    tbxAddress.Enabled = false;
+                    tbxPort.Enabled = false;
+                    _connected = true;
+                }
+                else
+                {
+                    btnConnect.Text = "Connect";
+                    if (Controller != null) { Controller.Dispose(); }
+                    gbSend.Enabled = false;
+                    gbReceived.Enabled = false;
+                    tbxAddress.Enabled = true;
+                    tbxPort.Enabled = true;
+                    _connected = false;
+                }
+            }
+        }
 
         public MainForm()
         {
             InitializeComponent();
-
-            // Create controller with a name corresponding to the hash code of the application
-            Controller = new IvyController(this.GetHashCode().ToString());
-            Controller.PositionChanged += Controller_PositionChanged;
-            Controller.OrientationChanged += Controller_OrientationChanged;
         }
 
         private void btnSendPos_Click(object sender, EventArgs e)
@@ -51,7 +77,35 @@ namespace IvyControllerTestApp
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Controller.Dispose();
+            if (Controller != null)
+            {
+                Controller.Dispose();
+            }
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            if (!Connected)
+            {
+                try
+                {
+                    Controller = new IvyController(this.GetHashCode().ToString(), tbxAddress.Text, tbxPort.Text);
+                    Controller.PositionChanged += Controller_PositionChanged;
+                    Controller.OrientationChanged += Controller_OrientationChanged;
+
+                    Connected = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format("Error while loading IvyController: {0}", ex.Message));
+
+                    Connected = false;
+                }
+            }
+            else
+            {
+                Connected = false;
+            }
         }
     }
 }
