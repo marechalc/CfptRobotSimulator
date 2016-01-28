@@ -9,10 +9,9 @@ using System.Text.RegularExpressions;
 
 namespace IvyControllers
 {
-    public class IvyController
+    public class IvyController : IDisposable
     {
         #region Constants
-        
         /// <summary>
         /// Default broadcast address for the Ivy Bus used by constructors that do not define it.
         /// </summary>
@@ -40,13 +39,10 @@ namespace IvyControllers
         #endregion
 
         #region Private properties
-        
         /// <summary>
         /// Provides connection to a shared network bus, used to broadcast information through network.
         /// </summary>
         private Ivy IvyBus { get; set; }
-
-
         #endregion
 
         #region Events
@@ -95,7 +91,6 @@ namespace IvyControllers
         #endregion
 
         #region Private Methods
-
         /// <summary>
         /// Called by IvyBus when a rotation change message has been received
         /// </summary>
@@ -136,22 +131,38 @@ namespace IvyControllers
                 OrientationChanged(robotName, angle);
             }
         }
-
         #endregion
 
         #region Public methods
+        /// <summary>
+        /// Broadcasts a new position on the bus
+        /// </summary>
+        /// <param name="robotName">Identifier of the robot</param>
+        /// <param name="x">New horizontal position in millimeters</param>
+        /// <param name="y">New vertical position in millimeters</param>
         public void SendPositionChange(string robotName, int x, int y)
         {
             IvyBus.SendMsg(String.Format("PositionChanged {0} {1} {2}",
                 robotName, x, y));
         }
 
+        /// <summary>
+        /// Broadcasts a new orientation on the bus
+        /// </summary>
+        /// <param name="robotName">Identifier of the robot</param>
+        /// <param name="angle">New orientation of the robot</param>
         public void SendOrientationChanged(string robotName, int angle)
         {
             IvyBus.SendMsg(String.Format("OrientationChanged {0} {1}",
                 robotName, angle));
         }
-        #endregion
 
+        #region IDisposable implementation
+        public void Dispose()
+        {
+            IvyBus.Stop();
+        }
+        #endregion
+        #endregion
     }
 }

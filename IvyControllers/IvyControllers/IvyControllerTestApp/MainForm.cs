@@ -48,5 +48,10 @@ namespace IvyControllerTestApp
                 String.Format("Orientation changed for robot {0}. New angle is ({1}).",
                 robotName, orientation));
         }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Controller.Dispose();
+        }
     }
 }
