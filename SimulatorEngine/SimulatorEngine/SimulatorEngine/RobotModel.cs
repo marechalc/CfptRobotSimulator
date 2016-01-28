@@ -90,6 +90,8 @@ namespace SimulatorEngine
                     break;
 
                 case "AV":
+                          // AVANCEMENT PAR TICK: VITESSE/ SAMPLE_PER_SECOND
+
 
                     break;
 
