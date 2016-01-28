@@ -82,6 +82,16 @@ namespace IvyControllers
         { }
 
         /// <summary>
+        /// Instanciates an IvyController using default ready message
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="readyMessage"></param>
+        /// <param name="messageFilter"></param>
+        public IvyController(string name, string broadcastAddress, string broadcastPort)
+            : this(name, DEFAULT_BUS_READY_MESSAGE, broadcastAddress, broadcastPort)
+        { }
+
+        /// <summary>
         /// Instanciates an IvyController using default ready message, message filter, broadcast address and port.
         /// </summary>
         /// <param name="name"></param>
