@@ -30,13 +30,25 @@ namespace IvyControllers
         /// <summary>
         /// Regex pattern used for PositionChanged messages
         /// </summary>
-		public const string POSITION_CHANGED_REGEX = @"^(PositionChanged ([A-Za-z]+) ([0-9]+) ([0-9]+))$";
+		public const string POSITION_CHANGED_REGEX_PATTERN = @"^(PositionChanged ([A-Za-z]+) ([0-9]+) ([0-9]+))$";
 
         /// <summary>
         /// Regex pattern used for OrientationChanged messages
         /// </summary>
-		public const string ORIENTATION_CHANGED_REGEX = @"^(OrientationChanged ([A-Za-z]+) ([0-9]+))$";
+		public const string ORIENTATION_CHANGED_REGEX_PATTERN = @"^(OrientationChanged ([A-Za-z]+) ([0-9]+))$";
         #endregion
+
+		#region Static fields
+		/// <summary>
+		/// Regex used for PositionChanged messages
+		/// </summary>
+		private static Regex PositionChangedRegex = new Regex (POSITION_CHANGED_REGEX_PATTERN);
+
+		/// <summary>
+		/// Regex used for OrientationChanged messages
+		/// </summary>
+		private static Regex OrientationChangedRegex = new Regex (ORIENTATION_CHANGED_REGEX_PATTERN);
+		#endregion
 
         #region Private properties
         /// <summary>
@@ -67,8 +79,8 @@ namespace IvyControllers
             IvyBus = new Ivy(name, readyMessage);
             IvyBus.Start(String.Format("{0}:{1}", broadcastAddress, broadcastPort));
 
-            IvyBus.BindMsg(POSITION_CHANGED_REGEX, OnPositionChangedReceived);
-            IvyBus.BindMsg(ORIENTATION_CHANGED_REGEX, OnOrientationChangedReceived);
+            IvyBus.BindMsg(POSITION_CHANGED_REGEX_PATTERN, OnPositionChangedReceived);
+            IvyBus.BindMsg(ORIENTATION_CHANGED_REGEX_PATTERN, OnOrientationChangedReceived);
 
             if (!IvyBus.IsRunning)
             {
@@ -113,9 +125,7 @@ namespace IvyControllers
         /// <param name="e"></param>
         private void OnPositionChangedReceived(object sender, IvyMessageEventArgs e)
         {
-            Regex regex = new Regex(POSITION_CHANGED_REGEX);
-
-            Match result = regex.Match(e.GetArguments()[0]);
+			Match result = PositionChangedRegex.Match(e.GetArguments()[0]);
 
 			if (result.Groups.Count == 5)
             {
@@ -134,9 +144,7 @@ namespace IvyControllers
         /// <param name="e"></param>
         private void OnOrientationChangedReceived(object sender, IvyMessageEventArgs e)
         {
-            Regex regex = new Regex(ORIENTATION_CHANGED_REGEX);
-
-            Match result = regex.Match(e.GetArguments()[0]);
+			Match result = OrientationChangedRegex.Match(e.GetArguments()[0]);
 
 			if (result.Groups.Count == 4)
             {
