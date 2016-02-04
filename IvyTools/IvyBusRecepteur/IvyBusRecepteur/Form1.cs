@@ -36,7 +36,7 @@ namespace IvyTools
         /// <summary>
         /// Allows you to change subscription to a message
         /// </summary>
-        private void changementMesage()
+        private void changedMesage()
         {
             bus.Stop();
 
@@ -50,7 +50,6 @@ namespace IvyTools
             {
                 MessageBox.Show("Error " + ie.GetBaseException());
             }
-
         }
 
         /// <summary>
@@ -58,7 +57,7 @@ namespace IvyTools
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnConenxion_Click(object sender, System.EventArgs e)
+        private void btnLogin_Click(object sender, System.EventArgs e)
         {
             bus = new Ivy("my_apply", "my_apply Ready");
 
@@ -80,7 +79,7 @@ namespace IvyTools
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnDeconnexion_Click(object sender, EventArgs e)
+        private void btnLogout_Click(object sender, EventArgs e)
         {
             btnLogin.Enabled = true;
             btnLogout.Enabled = false;
@@ -88,22 +87,43 @@ namespace IvyTools
             MessageBox.Show("You are disconnected");
         }
 
-        private void cbxChoixRegle_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Select the data to display
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbxChooseData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            changementMesage();
-            int choix = cbxChoixRegle.SelectedIndex;
-            switch (choix)
+            changedMesage();
+            int choice = cbxChooseData.SelectedIndex;
+            switch (choice)
             {
-                case 0:
+                case 0: // PositionChanged selected
                     bus.BindMsg("^(PositionChanged.*)", addMessage);
                     break;
-                case 1:
+
+                case 1: // OrientationChanged selected
                     bus.BindMsg("^(OrientationChanged.*)", addMessage);
+                    break;
+
+                case 2: // Position X only selected
+                    bus.BindMsg("(.*Posx.r.*)", addMessage);
+                    break;
+
+                case 3: // Position Y only selected
+                    bus.BindMsg("(.*Posy.r.*)", addMessage);
+                    break;
+
+                case 4: // Sending engine selected
+                    bus.BindMsg("(.*MOTEUR.*)", addMessage);
+                    break;
+
+                case 5: // Received Bluetooth selected
+                    bus.BindMsg("(.*BLUETOOTH.*)", addMessage);
                     break;
                 default:
                     break;
             }
         }
-
     }
 }
