@@ -1,5 +1,4 @@
 ﻿using IvyControllers;
-using SimulatorEngine;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,15 +13,16 @@ namespace CRSView
 {
     public partial class View : Form
     {
-        IvyController Controller { get; set; }
-        Dictionary<string,RobotModel> robots { get; set; }
+        IvyController Controller; //SC/ Link to our controller
+        Dictionary<string, Robot> robots; //SC/ Dictionnary of robots
 
         public View()
         {
             InitializeComponent();
 
-            //SC/ Instantiate the list of robots
-            this.robots = new List<RobotModel>();
+            //SC/ Instantiate the game area and the list of robots
+            GameArea gameArea = new GameArea(3000, 2000);
+            this.robots = new Dictionary<string,Robot>();
         }
 
         private void View_Load(object sender, EventArgs e)
@@ -31,6 +31,19 @@ namespace CRSView
             this.Controller = new IvyController(this.GetHashCode().ToString());
             Controller.PositionChanged += Controller_PositionChanged;
             Controller.OrientationChanged += Controller_OrientationChanged;
+        }
+
+        /// <summary>
+        /// //SC/ Update the View
+        /// </summary>
+        private void updateView()
+        {
+            foreach (var robot in this.robots)
+            {
+                // TO DO
+            }
+
+            this.Refresh();
         }
 
         /// <summary>
@@ -43,13 +56,12 @@ namespace CRSView
             if (this.RobotExist(robotName))
             {
                 //SC/ Get our robot of our dictionnary and set is new orienation
-                RobotModel robot = this.robots[robotName];
+                Robot robot = this.robots[robotName];
                 // TO DO CHANGE ORIENTATION
             }
             else
             {
-                //SC/ Robot doesn't exist create a new one
-                this.CreateRobot(robotName, x, y);
+                //SC/ Robot doesn't exist !
             }
         }
 
@@ -64,12 +76,13 @@ namespace CRSView
             if(this.RobotExist(robotName))
             {
                 //SC/ Get our robot of our dictionnary and set is new position
-                RobotModel robot = this.robots[robotName];
+                Robot robot = this.robots[robotName];
                 robot.Position = new Point(x, y);
             }
             else
             {
                 //SC/ Robot doesn't exist create a new one
+                // and add it to our list of robots
                 this.CreateRobot(robotName, x, y);
             }
         }
@@ -83,7 +96,7 @@ namespace CRSView
         private void CreateRobot(string robotName, int x, int y)
         {
             //SC/ Create a new robot
-            RobotModel robot = new RobotModel(null, robotName, new Point(x, y), 0, "");
+            Robot robot = new Robot(robotName, new Point(x, y));
 
             //SC/ Add it to our list
             this.robots.Add(robot.Name,robot);

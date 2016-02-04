@@ -36,7 +36,11 @@ namespace IvyControllerTestApp
                 else
                 {
                     btnConnect.Text = "Connect";
-                    if (Controller != null) { Controller.Dispose(); }
+                    if (Controller != null) {
+						Controller.OrientationChanged -= Controller_OrientationChanged;
+						Controller.PositionChanged -= Controller_PositionChanged;
+						Controller.Dispose(); 
+					}
                     gbSend.Enabled = false;
                     gbReceived.Enabled = false;
                     tbxAddress.Enabled = true;
@@ -77,10 +81,7 @@ namespace IvyControllerTestApp
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Controller != null)
-            {
-                Controller.Dispose();
-            }
+			Connected = false;
         }
 
         private void btnConnect_Click(object sender, EventArgs e)

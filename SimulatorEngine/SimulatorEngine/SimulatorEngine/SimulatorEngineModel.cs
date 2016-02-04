@@ -9,7 +9,7 @@ using System.Resources;
 
 namespace SimulatorEngine
 {
-   public class SimulatorEngineModel
+    public class SimulatorEngineModel
     {
         public const int SAMPLE_PER_SECOND = 10;
 
