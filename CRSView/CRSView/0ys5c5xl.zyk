@@ -1,0 +1,44 @@
+﻿using IvyControllers;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CRSView
+{
+    public partial class View : Form
+    {
+        IvyController Controller { get; set; }
+        List<string> robots { get; set; }
+
+        public View()
+        {
+            InitializeComponent();
+
+            this.robots
+        }
+
+        private void View_Load(object sender, EventArgs e)
+        {
+            // Create controller with a name corresponding to the hash code of the application
+            this.Controller = new IvyController(this.GetHashCode().ToString());
+            Controller.PositionChanged += Controller_PositionChanged;
+            Controller.OrientationChanged += Controller_OrientationChanged;
+        }
+
+        private void Controller_OrientationChanged(string robotName, int angle)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Controller_PositionChanged(string robotName, int x, int y)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

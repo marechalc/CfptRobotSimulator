@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace SimulatorEngine
 {
-    class RobotModel
+    public class RobotModel
     {
         private const int DEFAULT_SPEED = 0;
 
@@ -90,6 +90,8 @@ namespace SimulatorEngine
                     break;
 
                 case "AV":
+                          // AVANCEMENT PAR TICK: VITESSE/ SAMPLE_PER_SECOND
+
 
                     break;
 

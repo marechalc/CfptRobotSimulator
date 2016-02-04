@@ -34,9 +34,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.ClientSize = new System.Drawing.Size(905, 610);
             this.Name = "View";
             this.Text = "CFPT Robot Simulator";
+            this.Load += new System.EventHandler(this.View_Load);
             this.ResumeLayout(false);
 
         }
