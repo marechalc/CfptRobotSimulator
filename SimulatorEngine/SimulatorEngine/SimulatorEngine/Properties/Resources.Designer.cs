@@ -59,23 +59,5 @@ namespace SimulatorEngine.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à // 20160121
-        ///// Parcours carré
-        ///RS	// Reset, X=200, Y=800, cap = 0
-        ///VI100	// Vitess [mm/s]
-        ///AV100	// Avance 100mm
-        ///GC90	// GoCap (en degré, sens trigo)
-        ///AV100
-        ///GC-90
-        ///AV100
-        ///END	// Fin de parcours.
-        /// </summary>
-        internal static string test_parcours_carre {
-            get {
-                return ResourceManager.GetString("test_parcours_carre", resourceCulture);
-            }
-        }
     }
 }

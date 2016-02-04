@@ -11,19 +11,17 @@ namespace SimulatorEngine
 {
    public class SimulatorEngineModel
     {
-        private const int _SAMPLE_PER_SECOND = 10;
+        public const int SAMPLE_PER_SECOND = 10;
 
-        public int SAMPLE_PER_SECOND
-        {
-            get { return _SAMPLE_PER_SECOND; }
-        } 
-
-
+    
         private const String VI_PATTERN = "";
         private List<RobotModel> _robots;
+
+     
         private SurfaceModel _surface;
         private Timer _simulationTime;
         private Controller _controller;
+ 
 
         private Controller Controller
         {
@@ -37,6 +35,11 @@ namespace SimulatorEngine
            set { _simulationTime = value; }
        }
 
+       public List<RobotModel> Robots
+       {
+           get { return _robots; }
+           set { _robots = value; }
+       }
         /// <summary>
         /// Constructor by default
         /// </summary>
@@ -47,16 +50,26 @@ namespace SimulatorEngine
             SimulationTime = new Timer();
             SimulationTime.Interval = 100;
             SimulationTime.Elapsed += Update;
+            Robots = new List<RobotModel>();
+            Robots.Add(new RobotModel(this, "RB1", 0, 0, 0));
+            CreateRobots();
+
+
+
         }
 
+
         /// <summary>
-        /// Tick of the timer (1 tick = 100 ms)
+        /// Tick of the timer (1 tick simulate 100 ms)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void Update(object sender, ElapsedEventArgs e)
         {
-           
+           foreach(RobotModel robot in Robots)
+           {
+               robot.ApplyInstruction();
+           }
             
         }
 
@@ -71,16 +84,19 @@ namespace SimulatorEngine
             SimulationTime.Start();
         }
 
-        public void StrategyParser()
+
+        public void CreateRobots()
         {
             string line = "";
-            StreamReader file = new StreamReader(Properties.Resources.test_parcours_carre);
-            RobotModel robot = new RobotModel(this, "RB1", 0, 0, 0, "");
+            StreamReader file = new StreamReader("parcours/20160121_parcours_carre.txt");
 
+           foreach(RobotModel robot in Robots)
             while((line = file.ReadLine()) != null)
             {
-                robot.Instruction = line;
+                robot.Instructions.Add(line);
             }
+
+           
         }
     }
 }
