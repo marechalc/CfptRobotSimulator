@@ -30,12 +30,12 @@ namespace IvyControllers
         /// <summary>
         /// Regex pattern used for PositionChanged messages
         /// </summary>
-        public const string POSITION_CHANGED_REGEX = @"^PositionChanged ([A-Za-z]+) ([0-9]+) ([0-9]+)";
+		public const string POSITION_CHANGED_REGEX = @"^(PositionChanged ([A-Za-z]+) ([0-9]+) ([0-9]+))$";
 
         /// <summary>
         /// Regex pattern used for OrientationChanged messages
         /// </summary>
-        public const string ORIENTATION_CHANGED_REGEX = @"^RotationChanged ([A-Za-z]+) ([0-9]+)";
+		public const string ORIENTATION_CHANGED_REGEX = @"^(OrientationChanged ([A-Za-z]+) ([0-9]+))$";
         #endregion
 
         #region Private properties
@@ -117,11 +117,11 @@ namespace IvyControllers
 
             Match result = regex.Match(e.GetArguments()[0]);
 
-            if (result.Captures.Count == 3)
+			if (result.Groups.Count == 5)
             {
-                string robotName = result.Captures[0].Value;
-                int x = Convert.ToInt32(result.Captures[1].Value);
-                int y = Convert.ToInt32(result.Captures[2].Value);
+                string robotName = result.Groups[2].Value;
+                int x = Convert.ToInt32(result.Groups[3].Value);
+                int y = Convert.ToInt32(result.Groups[4].Value);
 
                 PositionChanged(robotName, x, y);
             }
@@ -138,10 +138,10 @@ namespace IvyControllers
 
             Match result = regex.Match(e.GetArguments()[0]);
 
-            if (result.Captures.Count == 2)
+			if (result.Groups.Count == 4)
             {
-                string robotName = result.Captures[0].Value;
-                int angle = Convert.ToInt32(result.Captures[1].Value);
+                string robotName = result.Groups[2].Value;
+                int angle = Convert.ToInt32(result.Groups[3].Value);
 
                 OrientationChanged(robotName, angle);
             }
@@ -175,7 +175,8 @@ namespace IvyControllers
         #region IDisposable implementation
         public void Dispose()
         {
-            IvyBus.Stop();
+			if (IvyBus.IsRunning)
+            	IvyBus.Stop();
         }
         #endregion
         #endregion

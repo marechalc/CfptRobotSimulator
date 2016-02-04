@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio 2012
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IvyControllers", "IvyControllers\IvyControllers.csproj", "{C41452BF-D980-478B-A1D8-2FA20A69CFC3}"
@@ -21,6 +21,9 @@ Global
 		{C8E942BD-DF6B-4D2E-AE3E-6FB35CFF4454}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8E942BD-DF6B-4D2E-AE3E-6FB35CFF4454}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8E942BD-DF6B-4D2E-AE3E-6FB35CFF4454}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = IvyControllerTestApp\IvyControllerTestApp.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
