@@ -1,0 +1,12 @@
+﻿// 20160121
+// Parcours carre
+RS      // ReSet, X=200, Y=800, cap = 0
+VI100   // VItesse [mm/s]
+AV100   // AVance 100 mm
+GC90    // Go Cap (en degré, sens trigo)
+AV100
+GC180
+AV100
+GC-90
+AV100
+END     // fin de parcours

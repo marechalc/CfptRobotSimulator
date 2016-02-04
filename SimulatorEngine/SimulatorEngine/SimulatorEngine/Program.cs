@@ -10,6 +10,11 @@ namespace SimulatorEngine
     {
         static void Main(string[] args)
         {
+            
+            Console.WriteLine("test");
+            Controller c = new Controller();
+            SimulatorEngineModel SimulatorEngine = new SimulatorEngineModel(c);
+            SimulatorEngine.StartSimulation();
         }
     }
 }
