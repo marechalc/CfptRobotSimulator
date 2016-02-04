@@ -22,7 +22,7 @@ namespace CRSView
             InitializeComponent();
 
             //SC/ Instantiate the list of robots
-            this.robots = new List<RobotModel>();
+            this.robots = new Dictionary<string,RobotModel>();
         }
 
         private void View_Load(object sender, EventArgs e)
@@ -48,8 +48,7 @@ namespace CRSView
             }
             else
             {
-                //SC/ Robot doesn't exist create a new one
-                this.CreateRobot(robotName, x, y);
+                //SC/ Robot doesn't exist !
             }
         }
 
