@@ -9,15 +9,9 @@ using System.Resources;
 
 namespace SimulatorEngine
 {
-   public class SimulatorEngineModel
+    public class SimulatorEngineModel
     {
-        private const int _SAMPLE_PER_SECOND = 10;
-
-        public int SAMPLE_PER_SECOND
-        {
-            get { return _SAMPLE_PER_SECOND; }
-        } 
-
+        public const int SAMPLE_PER_SECOND = 10;
 
         private const String VI_PATTERN = "";
         private List<RobotModel> _robots;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimulatorEngine
 {
-    class Controller
+    public class Controller
     {
     }
 }
