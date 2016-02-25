@@ -38,17 +38,20 @@ namespace IvyTools
         /// </summary>
         private void changedMesage()
         {
-            bus.Stop();
-
-            bus = new Ivy();
-
-            try
+            if (bus != null)
             {
-                bus.Start(tbxAdresse.Text);
-            }
-            catch (IvyException ie)
-            {
-                MessageBox.Show("Error " + ie.GetBaseException());
+                bus.Stop();
+
+                bus = new Ivy();
+
+                try
+                {
+                    bus.Start(tbxAdresse.Text);
+                }
+                catch (IvyException ie)
+                {
+                    MessageBox.Show("Error " + ie.GetBaseException());
+                }
             }
         }
 
@@ -96,33 +99,36 @@ namespace IvyTools
         {
             changedMesage();
             int choice = cbxChooseData.SelectedIndex;
-            switch (choice)
+            if (bus != null)
             {
-                case 0: // PositionChanged selected
-                    bus.BindMsg("^(PositionChanged.*)", addMessage);
-                    break;
+                switch (choice)
+                {
+                    case 0: // PositionChanged selected
+                        bus.BindMsg("^(PositionChanged.*)", addMessage);
+                        break;
 
-                case 1: // OrientationChanged selected
-                    bus.BindMsg("^(OrientationChanged.*)", addMessage);
-                    break;
+                    case 1: // OrientationChanged selected
+                        bus.BindMsg("^(OrientationChanged.*)", addMessage);
+                        break;
 
-                case 2: // Position X only selected
-                    bus.BindMsg("(.*Posx.r.*)", addMessage);
-                    break;
+                    case 2: // Position X only selected
+                        bus.BindMsg("(.*Posx.r.*)", addMessage);
+                        break;
 
-                case 3: // Position Y only selected
-                    bus.BindMsg("(.*Posy.r.*)", addMessage);
-                    break;
+                    case 3: // Position Y only selected
+                        bus.BindMsg("(.*Posy.r.*)", addMessage);
+                        break;
 
-                case 4: // Sending engine selected
-                    bus.BindMsg("(.*MOTEUR.*)", addMessage);
-                    break;
+                    case 4: // Sending engine selected
+                        bus.BindMsg("(.*MOTEUR.*)", addMessage);
+                        break;
 
-                case 5: // Received Bluetooth selected
-                    bus.BindMsg("(.*BLUETOOTH.*)", addMessage);
-                    break;
-                default:
-                    break;
+                    case 5: // Received Bluetooth selected
+                        bus.BindMsg("(.*BLUETOOTH.*)", addMessage);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
