@@ -84,10 +84,6 @@
       <Project>{c41452bf-d980-478b-a1d8-2fa20a69cfc3}</Project>
       <Name>IvyControllers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\SimulatorEngine\SimulatorEngine\SimulatorEngine\SimulatorEngine.csproj">
-      <Project>{bbf5a2dd-eab9-4a96-b1b7-645230dc3d6e}</Project>
-      <Name>SimulatorEngine</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
