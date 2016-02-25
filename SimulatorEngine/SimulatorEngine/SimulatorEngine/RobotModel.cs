@@ -73,7 +73,8 @@ namespace SimulatorEngine
             this.Name = name;
             this.Position = new Point(position_x, position_y);
             this.Orientation = orientation;
-            this.CurrentInstruction = DEFAULT_CURRENT_INSTRUCTION;    
+            this.CurrentInstruction = DEFAULT_CURRENT_INSTRUCTION;
+            this.Instructions = new List<string>();
         }
 
 
@@ -87,10 +88,13 @@ namespace SimulatorEngine
             // AVANCEMENT PAR TICK: VITESSE/ SAMPLE_PER_SECOND
             double distanceByTick = this.Speed / SimulatorEngineModel.SAMPLE_PER_SECOND;
 
+
             Point positionToReach= new Point(Convert.ToInt32(this.Position.X + distanceToReach * Math.Cos(DegreeToRadian(Orientation))),
                                              Convert.ToInt32(this.Position.Y + distanceToReach * Math.Sin(DegreeToRadian(Orientation))));
 
-            this.Position= new Point(this.Position.X+Convert.ToInt32(this.Position.X + distanceByTick * Math.Cos(DegreeToRadian(Orientation))),this.Position.Y+Convert.ToInt32(this.Position.X+distanceByTick * Math.Sin(DegreeToRadian(Orientation))));
+
+
+     //       this.Position= new Point(this.Position.X+Convert.ToInt32(this.Position.X + distanceByTick * Math.Cos(DegreeToRadian(Orientation))),this.Position.Y+Convert.ToInt32(this.Position.X+distanceByTick * Math.Sin(DegreeToRadian(Orientation))));
 
            if(this.Position.X==positionToReach.X && Position.Y==positionToReach.Y)
            {
@@ -101,13 +105,17 @@ namespace SimulatorEngine
 
         }
 
+        private int getInstructionParam()
+        {
+            return Convert.ToInt32(Regex.Match(this.Instructions[CurrentInstruction], @"-?[0-9]\d*(\.\d+)?").Value);
+        }
+
         /// <summary>
         /// This apply an instruction
         /// </summary>
         public  void ApplyInstruction()
         {
-            string instructionName = Regex.Split(this.Instructions[CurrentInstruction], @"\[a-zA-Z]+")[0];
-            int instructionParam = Convert.ToInt32(Regex.Split(this.Instructions[CurrentInstruction], @"\-?[0-9]\d*(\.\d+)?")[0]);
+            string instructionName = Regex.Match(this.Instructions[CurrentInstruction], @"[a-zA-Z]+").Value;
             bool instructionTerminated = false;
             switch (instructionName)
             {
@@ -118,19 +126,23 @@ namespace SimulatorEngine
                     break;
 
                 case "VI":
-                    this.Speed = instructionParam;
+                    this.Speed = getInstructionParam();
                     instructionTerminated = true;
                     break;
 
                 case "AV":
-                          
-                    instructionTerminated=UpdatePosition(instructionParam);
+
+                    instructionTerminated = UpdatePosition(getInstructionParam());
 
                     break;
 
 
                 case "GC":
-                    this.Orientation = instructionParam;
+                    this.Orientation = getInstructionParam();
+                    instructionTerminated = true;
+                    break;
+
+                default:
                     instructionTerminated = true;
                     break;
 
@@ -138,8 +150,13 @@ namespace SimulatorEngine
 
             if(instructionTerminated==true)
             {
-                update();
-                CurrentInstruction++;
+                
+                if (CurrentInstruction < this.Instructions.Count - 1)
+                {
+                    update();
+                    CurrentInstruction++;
+                }
+               
             }
 
         }
@@ -147,7 +164,7 @@ namespace SimulatorEngine
         public void update()
         {
 
-            Console.WriteLine(Instructions[CurrentInstruction] + "done");
+            Console.WriteLine(Instructions[CurrentInstruction] + " done");
 
 
         }

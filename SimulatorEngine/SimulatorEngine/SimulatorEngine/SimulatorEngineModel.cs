@@ -93,7 +93,7 @@ namespace SimulatorEngine
            foreach(RobotModel robot in Robots)
             while((line = file.ReadLine()) != null)
             {
-                robot.Instructions.Add(line);
+               robot.Instructions.Add(line);
             }
 
            
