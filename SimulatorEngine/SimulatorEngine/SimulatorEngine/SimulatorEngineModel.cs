@@ -1,29 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
-using System.Resources;
+using IvyControllers;
 
 namespace SimulatorEngine
 {
     public class SimulatorEngineModel
     {
         public const int SAMPLE_PER_SECOND = 10;
-
-    
         private const String VI_PATTERN = "";
         private List<RobotModel> _robots;
-
-     
-        private SurfaceModel _surface;
+        private SurfaceModel _surface; // not implemented yet
         private Timer _simulationTime;
-        private Controller _controller;
- 
+        private IvyController _controller;
 
-        private Controller Controller
+        #region GET/SET
+        public IvyController Controller
         {
             get { return _controller; }
             set { _controller = value; }
@@ -40,27 +32,25 @@ namespace SimulatorEngine
            get { return _robots; }
            set { _robots = value; }
        }
-        /// <summary>
+        #endregion
+
+       /// <summary>
         /// Constructor by default
         /// </summary>
         /// <param name="ctrlr"></param>
-        public SimulatorEngineModel(Controller ctrlr)
+        public SimulatorEngineModel()
         {
-            this.Controller = ctrlr;
+            this.Controller = new IvyController("simulator_engine");
             SimulationTime = new Timer();
             SimulationTime.Interval = 100;
             SimulationTime.Elapsed += Update;
             Robots = new List<RobotModel>();
-            Robots.Add(new RobotModel(this, "RB1", 0, 0, 0));
-            CreateRobots();
-
-
-
+            Robots.Add(new RobotModel(this, "RB1", 0, 0, 0, "parcours/20160121_parcours_carre.txt"));
         }
 
 
         /// <summary>
-        /// Tick of the timer (1 tick simulate 100 ms)
+        /// Tick of the timer (1 tick simulate 100 ms). Apply 1 instructions to each robots
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -69,34 +59,17 @@ namespace SimulatorEngine
            foreach(RobotModel robot in Robots)
            {
                robot.ApplyInstruction();
-           }
-            
+           } 
         }
 
-
-
-        
         /// <summary>
-        /// 
+        /// This start the timer
         /// </summary>
         public void StartSimulation()
         {
             SimulationTime.Start();
         }
 
-
-        public void CreateRobots()
-        {
-            string line = "";
-            StreamReader file = new StreamReader("parcours/20160121_parcours_carre.txt");
-
-           foreach(RobotModel robot in Robots)
-            while((line = file.ReadLine()) != null)
-            {
-               robot.Instructions.Add(line);
-            }
-
-           
-        }
+        
     }
 }
