@@ -1,0 +1,39 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="IvyControllers/IvyController.cs">
+    <Files>
+      <File FileName="IvyControllerTestApp/MainForm.cs" Line="22" Column="22" />
+      <File FileName="IvyControllerTestApp/MainForm.resx" Line="1" Column="1" />
+      <File FileName="IvyControllerTestApp/MainForm.Designer.cs" Line="1" Column="1" />
+      <File FileName="IvyControllers/IvyController.cs" Line="23" Column="23" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="IvyControllers" expanded="True">
+            <Node name="IvyController.cs" selected="True" />
+          </Node>
+          <Node name="IvyControllerTestApp" expanded="True">
+            <Node name="MainForm.cs" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True">
+          <Node name="IvyControllers" expanded="True">
+            <Node name="IvyControllers" expanded="True">
+              <Node name="IvyControllers.IvyController" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="IvyControllerTestApp" expanded="True">
+            <Node name="References" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

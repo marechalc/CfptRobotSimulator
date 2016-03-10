@@ -38,12 +38,27 @@ namespace CRSView
         /// </summary>
         private void updateView()
         {
+            this.Refresh();
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            var g = e.Graphics;
+            var pen = new Pen(Color.Red);
+
             foreach (var robot in this.robots)
             {
                 // TO DO
+                g.DrawRectangle(
+                    pen, 
+                    robot.Value.Position.X / 3000f * Width , 
+                    robot.Value.Position.Y / 2000f * Height, 
+                    20, 
+                    20);
             }
 
-            this.Refresh();
         }
 
         /// <summary>
@@ -63,6 +78,7 @@ namespace CRSView
             {
                 //SC/ Robot doesn't exist !
             }
+            updateView();
         }
 
         /// <summary>
@@ -85,6 +101,7 @@ namespace CRSView
                 // and add it to our list of robots
                 this.CreateRobot(robotName, x, y);
             }
+            updateView();
         }
 
         /// <summary>
