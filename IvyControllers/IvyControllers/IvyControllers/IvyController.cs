@@ -12,6 +12,7 @@ namespace IvyControllers
     public class IvyController : IDisposable
     {
         #region Constants
+
         /// <summary>
         /// Default broadcast address for the Ivy Bus used by constructors that do not define it.
         /// </summary>
@@ -30,12 +31,12 @@ namespace IvyControllers
         /// <summary>
         /// Regex pattern used for PositionChanged messages
         /// </summary>
-		public const string POSITION_CHANGED_REGEX_PATTERN = @"^(PositionChanged ([A-Za-z]+) ([0-9]+) ([0-9]+))$";
+		public const string POSITION_CHANGED_REGEX_PATTERN = "^(PositionChanged ([A-Za-z0-9]+) ([0-9]+) ([0-9]+))$";
 
         /// <summary>
         /// Regex pattern used for OrientationChanged messages
         /// </summary>
-		public const string ORIENTATION_CHANGED_REGEX_PATTERN = @"^(OrientationChanged ([A-Za-z]+) ([0-9]+))$";
+		public const string ORIENTATION_CHANGED_REGEX_PATTERN = "^(OrientationChanged ([A-Za-z0-9]+) ([0-9]+))$";
         #endregion
 
 		#region Static fields
@@ -77,7 +78,8 @@ namespace IvyControllers
         public IvyController(string name, string readyMessage, string broadcastAddress, string broadcastPort)
         {
             IvyBus = new Ivy(name, readyMessage);
-            IvyBus.Start(String.Format("{0}:{1}", broadcastAddress, broadcastPort));
+            //IvyBus.Start(String.Format("{0}:{1}", broadcastAddress, broadcastPort));
+            IvyBus.Start(String.Format("{0}", broadcastAddress));
 
             IvyBus.BindMsg(POSITION_CHANGED_REGEX_PATTERN, OnPositionChangedReceived);
             IvyBus.BindMsg(ORIENTATION_CHANGED_REGEX_PATTERN, OnOrientationChangedReceived);
