@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ivy">
-      <HintPath>..\..\..\IvyControllers\IvyControllers\IvyControllers\bin\Debug\Ivy.dll</HintPath>
-    </Reference>
     <Reference Include="IvyControllers">
       <HintPath>..\..\..\IvyControllers\IvyControllers\IvyControllers\bin\Debug\IvyControllers.dll</HintPath>
     </Reference>
@@ -48,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

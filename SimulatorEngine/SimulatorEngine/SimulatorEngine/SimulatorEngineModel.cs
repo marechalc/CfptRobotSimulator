@@ -45,7 +45,7 @@ namespace SimulatorEngine
             SimulationTime.Interval = 100;
             SimulationTime.Elapsed += Update;
             Robots = new List<RobotModel>();
-            Robots.Add(new RobotModel(this, "RB1", 0, 0, 0, "parcours/20160121_parcours_carre.txt"));
+            Robots.Add(new RobotModel(this, "RobotCFPT1", 0, 0, 0, "parcours/20160121_parcours_carre.txt"));
         }
 
 
@@ -67,7 +67,13 @@ namespace SimulatorEngine
         /// </summary>
         public void StartSimulation()
         {
-            SimulationTime.Start();
+            this.SimulationTime.Start();
+        }
+
+        public void FinishSimulation()
+        {
+            this.SimulationTime.Stop();
+            this.Controller.Dispose();
         }
 
         

@@ -200,6 +200,11 @@ namespace SimulatorEngine
                 Console.WriteLine(Instructions[CurrentInstruction] + " done");
                 CurrentInstruction++;
             }
+            else if (instructionTerminated == true && CurrentInstruction == this.Instructions.Count - 1)
+            {
+                Console.WriteLine(Instructions[CurrentInstruction] + " done");
+                this.SimulatorEngine.FinishSimulation();
+            }
         }
 
 
