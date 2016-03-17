@@ -78,8 +78,7 @@ namespace IvyControllers
         public IvyController(string name, string readyMessage, string broadcastAddress, string broadcastPort)
         {
             IvyBus = new Ivy(name, readyMessage);
-            //IvyBus.Start(String.Format("{0}:{1}", broadcastAddress, broadcastPort));
-            IvyBus.Start(String.Format("{0}", broadcastAddress));
+            IvyBus.Start(String.Format("{0}:{1}", broadcastAddress, broadcastPort));
 
             IvyBus.BindMsg(POSITION_CHANGED_REGEX_PATTERN, OnPositionChangedReceived);
             IvyBus.BindMsg(ORIENTATION_CHANGED_REGEX_PATTERN, OnOrientationChangedReceived);
